@@ -1,29 +1,11 @@
 <?php
 	
 	include "config.php";
+	include "functions/news.php";
 
-
-
-	$sql = "SELECT * FROM news WHERE category='nef' ORDER BY id DESC LIMIT 1";
-			$news = mysql_query($sql) or die (mysql_error());
-			$raw = mysql_fetch_assoc($news);
-			$neftit = $raw['title'];
-			$nefdes = $raw['description'];
-			$nefid = $raw['id'];
-	
-	$sql = "SELECT * FROM news WHERE category='obl' ORDER BY id DESC LIMIT 1";
-			$news = mysql_query($sql) or die (mysql_error());
-			$raw = mysql_fetch_assoc($news);
-			$obltit = $raw['title'];
-			$obldes = $raw['description'];
-			$oblid = $raw['id'];
-	
-	$sql = "SELECT * FROM news WHERE category='ray' ORDER BY id DESC LIMIT 1";
-			$news = mysql_query($sql) or die (mysql_error());
-			$raw = mysql_fetch_assoc($news);
-			$raytit = $raw['title'];
-			$raydes = $raw['description'];
-			$rayid = $raw['id'];
+	$nef = showLastNews('nef');
+	$obl = showLastNews('obl');
+	$ray = showLastNews('ray');
 
 ?>
 
@@ -47,17 +29,17 @@
 				
 				<tr>	
 					<td><a href="<?php echo "showNews.php?id=$nefid"; ?>"><img class="main" src="images/news/neftyanik.gif" width="110" height="110" align="left" /></a>					</td>
-					<td><p><strong><?=$neftit?></strong></br></br><?=$nefdes?><a href="<?php echo "showNews.php?id=$nefid"; ?>">Читать далее </a></p></td>
+					<td><p><strong><?=$nef['title']?></strong></br></br><?=$nef['desc']?><a href="<?php echo "showNews.php?id={$nef['id']}"; ?>">Читать далее </a></p></td>
 				</tr>
 				
 				<tr>	
 					<td><a href="<?php echo "showNews.php?id=$oblid"; ?>"><img class="main" src="images/news/ffs.jpg" width="110" height="110" align="left" /></a></td>
-					<td><p><strong><?=$obltit?></strong></br></br><?=$obldes?><a href="<?php echo "showNews.php?id=$oblid"; ?>">Читать далее </a></p></td>
+					<td><p><strong><?=$obl['title']?></strong></br></br><?=$obl['desc']?><a href="<?php echo "showNews.php?id={$obl['id']}"; ?>">Читать далее </a></p></td>
 				</tr>
 		
 				<tr>	
 					<td><a href="<?php echo "showNews.php?id=$rayid"; ?>"><img class="main" src="images/news/ffor.jpg" width="110" height="110" align="left" /></a></td>
-					<td><p><strong><?=$raytit?></strong></br></br><?=$raydes?><a href="<?php echo "showNews.php?id=$rayid"; ?>">Читать далее </a></p></td>
+					<td><p><strong><?=$ray['title']?></strong></br></br><?=$ray['desc']?><a href="<?php echo "showNews.php?id={$ray['id']}"; ?>">Читать далее </a></p></td>
 				</tr>
 			
 				
